@@ -1,0 +1,42 @@
+-- Q1: Category revenue, one month
+-- SELECT p.category, SUM(f.amount) AS sales FROM bench.fact_baseline f JOIN dw.dim_product p USING (product_key) WHERE f.date_key BETWEEN 20260301 AND 20260331 GROUP BY p.category ORDER BY sales DESC
+
+Sort  (cost=55723.40..55723.48 rows=32 width=40) (actual time=287.347..288.789 rows=31 loops=1)
+  Sort Key: (sum(f.amount)) DESC
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=14277 read=24198 written=13
+  ->  Finalize GroupAggregate  (cost=55714.26..55722.60 rows=32 width=40) (actual time=287.263..288.764 rows=31 loops=1)
+        Group Key: p.category
+        Buffers: shared hit=14277 read=24198 written=13
+        ->  Gather Merge  (cost=55714.26..55721.72 rows=64 width=40) (actual time=287.250..288.710 rows=93 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=14277 read=24198 written=13
+              ->  Sort  (cost=54714.23..54714.31 rows=32 width=40) (actual time=251.754..251.758 rows=31 loops=3)
+                    Sort Key: p.category
+                    Sort Method: quicksort  Memory: 28kB
+                    Buffers: shared hit=14277 read=24198 written=13
+                    Worker 0:  Sort Method: quicksort  Memory: 28kB
+                    Worker 1:  Sort Method: quicksort  Memory: 28kB
+                    ->  Partial HashAggregate  (cost=54713.03..54713.43 rows=32 width=40) (actual time=251.710..251.722 rows=31 loops=3)
+                          Group Key: p.category
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared hit=14261 read=24198 written=13
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          Worker 1:  Batches: 1  Memory Usage: 32kB
+                          ->  Hash Join  (cost=5.31..54612.64 rows=20078 width=16) (actual time=59.930..239.078 rows=23585 loops=3)
+                                Hash Cond: (f.product_key = p.product_key)
+                                Buffers: shared hit=14261 read=24198 written=13
+                                ->  Parallel Seq Scan on fact_baseline f  (cost=0.00..54553.11 rows=20078 width=12) (actual time=59.807..224.103 rows=23585 loops=3)
+                                      Filter: ((date_key >= 20260301) AND (date_key <= 20260331))
+                                      Rows Removed by Filter: 836582
+                                      Buffers: shared hit=14227 read=24198 written=13
+                                ->  Hash  (cost=3.47..3.47 rows=147 width=12) (actual time=0.061..0.061 rows=147 loops=3)
+                                      Buckets: 1024  Batches: 1  Memory Usage: 15kB
+                                      Buffers: shared hit=6
+                                      ->  Seq Scan on dim_product p  (cost=0.00..3.47 rows=147 width=12) (actual time=0.019..0.034 rows=147 loops=3)
+                                            Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=4
+Planning Time: 0.249 ms
+Execution Time: 288.838 ms

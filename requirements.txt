@@ -1,0 +1,2 @@
+psycopg2-binary>=2.9
+pandas>=2.0        # only for tools/verify_dataset.py

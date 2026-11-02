@@ -1,0 +1,26 @@
+-- Q1: Category revenue, one month
+-- SELECT p.category, SUM(f.amount) AS sales FROM bench.fact_part f JOIN dw.dim_product p USING (product_key) WHERE f.date_key BETWEEN 20260301 AND 20260331 GROUP BY p.category ORDER BY sales DESC
+
+Sort  (cost=2666.69..2666.77 rows=32 width=40) (actual time=39.209..39.215 rows=31 loops=1)
+  Sort Key: (sum(f.amount)) DESC
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=1056
+  ->  HashAggregate  (cost=2665.49..2665.89 rows=32 width=40) (actual time=39.171..39.189 rows=31 loops=1)
+        Group Key: p.category
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=1056
+        ->  Hash Join  (cost=5.31..2311.72 rows=70755 width=16) (actual time=0.047..22.262 rows=70755 loops=1)
+              Hash Cond: (f.product_key = p.product_key)
+              Buffers: shared hit=1056
+              ->  Seq Scan on fact_part_202603 f  (cost=0.00..2115.32 rows=70755 width=12) (actual time=0.005..11.424 rows=70755 loops=1)
+                    Filter: ((date_key >= 20260301) AND (date_key <= 20260331))
+                    Buffers: shared hit=1054
+              ->  Hash  (cost=3.47..3.47 rows=147 width=12) (actual time=0.038..0.040 rows=147 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 15kB
+                    Buffers: shared hit=2
+                    ->  Seq Scan on dim_product p  (cost=0.00..3.47 rows=147 width=12) (actual time=0.004..0.018 rows=147 loops=1)
+                          Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=4
+Planning Time: 0.277 ms
+Execution Time: 39.248 ms

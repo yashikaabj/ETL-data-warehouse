@@ -1,0 +1,293 @@
+-- Q4: Invoice lookup by posting_id
+-- SELECT * FROM bench.fact_part WHERE posting_id = 18768
+
+Append  (cost=4.32..950.27 rows=192 width=110) (actual time=0.041..0.082 rows=6 loops=1)
+  Buffers: shared hit=97
+  ->  Bitmap Heap Scan on fact_part_202401 fact_part_1  (cost=4.32..19.78 rows=4 width=110) (actual time=0.005..0.006 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202401_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.005..0.005 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202402 fact_part_2  (cost=4.32..19.76 rows=4 width=110) (actual time=0.002..0.002 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202402_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.002..0.002 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202403 fact_part_3  (cost=4.32..19.77 rows=4 width=110) (actual time=0.002..0.002 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202403_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.002..0.002 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202404 fact_part_4  (cost=4.32..19.77 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202404_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202405 fact_part_5  (cost=4.32..19.77 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202405_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202406 fact_part_6  (cost=4.32..19.77 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202406_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202407 fact_part_7  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202407_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202408 fact_part_8  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.002 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202408_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202409 fact_part_9  (cost=4.32..19.77 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202409_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202410 fact_part_10  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202410_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202411 fact_part_11  (cost=4.32..19.77 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202411_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202412 fact_part_12  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202412_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202501 fact_part_13  (cost=4.32..19.78 rows=4 width=110) (actual time=0.002..0.002 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202501_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202502 fact_part_14  (cost=4.32..19.75 rows=4 width=110) (actual time=0.001..0.002 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202502_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202503 fact_part_15  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.002 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202503_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202504 fact_part_16  (cost=4.32..19.77 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202504_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202505 fact_part_17  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.002 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202505_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202506 fact_part_18  (cost=4.32..19.77 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202506_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202507 fact_part_19  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202507_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202508 fact_part_20  (cost=4.32..19.79 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202508_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202509 fact_part_21  (cost=4.32..19.77 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202509_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202510 fact_part_22  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.002 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202510_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202511 fact_part_23  (cost=4.32..19.77 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202511_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202512 fact_part_24  (cost=4.32..19.79 rows=4 width=110) (actual time=0.003..0.004 rows=6 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Heap Blocks: exact=1
+        Buffers: shared hit=3
+        ->  Bitmap Index Scan on fact_part_202512_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.002..0.002 rows=6 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202601 fact_part_25  (cost=4.32..19.79 rows=4 width=110) (actual time=0.002..0.002 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202601_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.002..0.002 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202602 fact_part_26  (cost=4.32..19.76 rows=4 width=110) (actual time=0.001..0.002 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202602_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202603 fact_part_27  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202603_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202604 fact_part_28  (cost=4.32..19.77 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202604_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202605 fact_part_29  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.002 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202605_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202606 fact_part_30  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202606_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202607 fact_part_31  (cost=4.32..19.79 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202607_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202608 fact_part_32  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202608_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202609 fact_part_33  (cost=4.32..19.77 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202609_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202610 fact_part_34  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202610_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202611 fact_part_35  (cost=4.32..19.76 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202611_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202612 fact_part_36  (cost=4.32..19.77 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202612_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202701 fact_part_37  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202701_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202702 fact_part_38  (cost=4.32..19.74 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202702_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202703 fact_part_39  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202703_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202704 fact_part_40  (cost=4.32..19.77 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202704_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202705 fact_part_41  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202705_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202706 fact_part_42  (cost=4.32..19.77 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202706_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Index Scan using fact_part_202707_posting_id_idx on fact_part_202707 fact_part_43  (cost=0.29..19.95 rows=4 width=110) (actual time=0.002..0.002 rows=0 loops=1)
+        Index Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202708 fact_part_44  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202708_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202709 fact_part_45  (cost=4.32..19.77 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202709_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202710 fact_part_46  (cost=4.32..19.77 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202710_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202711 fact_part_47  (cost=4.32..19.77 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202711_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+  ->  Bitmap Heap Scan on fact_part_202712 fact_part_48  (cost=4.32..19.78 rows=4 width=110) (actual time=0.001..0.001 rows=0 loops=1)
+        Recheck Cond: (posting_id = 18768)
+        Buffers: shared hit=2
+        ->  Bitmap Index Scan on fact_part_202712_posting_id_idx  (cost=0.00..4.32 rows=4 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (posting_id = 18768)
+              Buffers: shared hit=2
+Planning Time: 0.760 ms
+Execution Time: 0.201 ms

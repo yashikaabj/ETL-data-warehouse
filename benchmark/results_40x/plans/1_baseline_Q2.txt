@@ -1,0 +1,29 @@
+-- Q2: One customer's daily sales
+-- SELECT date_key, SUM(amount) AS sales FROM bench.fact_baseline WHERE customer_key = 1321 GROUP BY date_key ORDER BY date_key
+
+Finalize GroupAggregate  (cost=104966.41..105391.68 rows=1459 width=36) (actual time=439.512..446.857 rows=1305 loops=1)
+  Group Key: date_key
+  Buffers: shared hit=14891 read=62028
+  ->  Gather Merge  (cost=104966.41..105351.56 rows=2918 width=36) (actual time=439.499..446.103 rows=1341 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=14891 read=62028
+        ->  Partial GroupAggregate  (cost=103966.38..104014.73 rows=1459 width=36) (actual time=402.857..403.755 rows=447 loops=3)
+              Group Key: date_key
+              Buffers: shared hit=14891 read=62028
+              ->  Sort  (cost=103966.38..103976.42 rows=4014 width=12) (actual time=402.818..402.993 rows=3627 loops=3)
+                    Sort Key: date_key
+                    Sort Method: quicksort  Memory: 246kB
+                    Buffers: shared hit=14891 read=62028
+                    Worker 0:  Sort Method: quicksort  Memory: 234kB
+                    Worker 1:  Sort Method: quicksort  Memory: 235kB
+                    ->  Parallel Seq Scan on fact_baseline  (cost=0.00..103726.13 rows=4014 width=12) (actual time=22.178..401.922 rows=3627 loops=3)
+                          Filter: (customer_key = 1321)
+                          Rows Removed by Filter: 1716707
+                          Buffers: shared hit=14817 read=62028
+Planning Time: 0.087 ms
+JIT:
+  Functions: 30
+  Options: Inlining false, Optimization false, Expressions true, Deforming true
+  Timing: Generation 1.772 ms, Inlining 0.000 ms, Optimization 9.166 ms, Emission 56.684 ms, Total 67.622 ms
+Execution Time: 447.702 ms

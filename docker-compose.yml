@@ -1,0 +1,17 @@
+# docker compose up -d   -> Postgres 16 with the source schema created and loaded.
+# Connect: psql -h localhost -p 5433 -U etl -d warehouse   (password: etl)
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: etl
+      POSTGRES_PASSWORD: etl
+      POSTGRES_DB: warehouse
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./sql/postgres:/docker-entrypoint-initdb.d:ro   # runs 01_schema.sql, 02_load.sql on first start
+      - ./data:/data:ro
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:

@@ -1,0 +1,32 @@
+-- Q5: Monthly revenue, all of 2025 (big scan)
+-- SELECT date_key / 100 AS ym, SUM(amount) AS sales FROM bench.fact_baseline WHERE date_key BETWEEN 20250101 AND 20251231 GROUP BY 1 ORDER BY 1
+
+Finalize GroupAggregate  (cost=114093.17..114477.92 rows=1461 width=36) (actual time=728.964..729.034 rows=12 loops=1)
+  Group Key: ((date_key / 100))
+  Buffers: shared hit=16208 read=60651
+  ->  Gather Merge  (cost=114093.17..114434.09 rows=2922 width=36) (actual time=728.893..728.951 rows=36 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=16208 read=60651
+        ->  Sort  (cost=113093.15..113096.80 rows=1461 width=36) (actual time=689.435..689.437 rows=12 loops=3)
+              Sort Key: ((date_key / 100))
+              Sort Method: quicksort  Memory: 26kB
+              Buffers: shared hit=16208 read=60651
+              Worker 0:  Sort Method: quicksort  Memory: 26kB
+              Worker 1:  Sort Method: quicksort  Memory: 26kB
+              ->  Partial HashAggregate  (cost=112994.44..113016.35 rows=1461 width=36) (actual time=689.403..689.417 rows=12 loops=3)
+                    Group Key: (date_key / 100)
+                    Batches: 1  Memory Usage: 73kB
+                    Buffers: shared hit=16194 read=60651
+                    Worker 0:  Batches: 1  Memory Usage: 73kB
+                    Worker 1:  Batches: 1  Memory Usage: 73kB
+                    ->  Parallel Seq Scan on fact_baseline  (cost=0.00..110399.72 rows=518944 width=12) (actual time=110.930..478.455 rows=435782 loops=3)
+                          Filter: ((date_key >= 20250101) AND (date_key <= 20251231))
+                          Rows Removed by Filter: 1284551
+                          Buffers: shared hit=16194 read=60651
+Planning Time: 0.106 ms
+JIT:
+  Functions: 27
+  Options: Inlining false, Optimization false, Expressions true, Deforming true
+  Timing: Generation 9.880 ms, Inlining 0.000 ms, Optimization 0.966 ms, Emission 58.670 ms, Total 69.516 ms
+Execution Time: 729.816 ms

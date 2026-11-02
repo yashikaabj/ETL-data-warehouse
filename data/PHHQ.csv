@@ -1,0 +1,64 @@
+HQ_ID,HEAD_QTR,STATE_ID
+22,PUNJAB,0
+23,UTTAKHAND,0
+101,Visakhapatnam HQ,1
+102,Itanagar HQ,2
+103,Guwahati HQ,3
+104,Patna HQ,4
+105,Raipur HQ,5
+106,Panaji HQ,6
+107,Ahmedabad HQ,7
+108,Gurugram HQ,8
+109,Shimla HQ,9
+110,Ranchi HQ,10
+111,Bengaluru HQ,11
+112,Dehradun HQ,12
+113,Bhopal HQ,13
+114,Mumbai HQ,14
+115,Bhubaneswar HQ,15
+116,Chandigarh HQ,16
+117,Jaipur HQ,17
+118,Chennai HQ,18
+119,Hyderabad HQ,19
+120,Lucknow HQ,20
+121,HARIDWAR HQ,12
+122,AMRITSAR,16
+123,RUDRAPUR,12
+124,Kochi HQ,22
+125,Thiruvananthapuram HQ,22
+126,Imphal HQ,21
+127,Kolkata HQ,23
+128,Siliguri HQ,23
+129,New Delhi HQ,24
+130,Srinagar HQ,25
+131,Jammu HQ,25
+132,Shillong HQ,26
+133,Aizawl HQ,27
+134,Kohima HQ,28
+135,Gangtok HQ,29
+136,Agartala HQ,30
+137,Pune HQ,14
+138,Nagpur HQ,14
+139,Nashik HQ,14
+140,Surat HQ,7
+141,Vadodara HQ,7
+142,Coimbatore HQ,18
+143,Madurai HQ,18
+144,Mysuru HQ,11
+145,Kanpur HQ,20
+146,Varanasi HQ,20
+147,Noida HQ,20
+148,Indore HQ,13
+149,Jodhpur HQ,17
+150,Ludhiana HQ,16
+151,Vijayawada HQ,1
+152,Cuttack HQ,15
+153,Haldwani HQ,12
+154,Faridabad HQ,8
+155,Kullu HQ,9
+156,Jamshedpur HQ,10
+157,Gaya HQ,4
+158,Dibrugarh HQ,3
+159,Bilaspur HQ,5
+160,Margao HQ,6
+161,Warangal HQ,19

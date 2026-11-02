@@ -1,0 +1,204 @@
+-- Q2: One customer's daily sales
+-- SELECT date_key, SUM(amount) AS sales FROM bench.fact_part WHERE customer_key = 1321 GROUP BY date_key ORDER BY date_key
+
+GroupAggregate  (cost=16.70..399.88 rows=1356 width=36) (actual time=0.059..2.496 rows=871 loops=1)
+  Group Key: fact_part.date_key
+  Buffers: shared hit=189
+  ->  Append  (cost=16.70..355.61 rows=5463 width=12) (actual time=0.011..1.262 rows=5440 loops=1)
+        Buffers: shared hit=189
+        ->  Index Only Scan using fact_part_202401_customer_key_date_key_amount_idx on fact_part_202401 fact_part_1  (cost=0.29..6.39 rows=120 width=12) (actual time=0.011..0.067 rows=110 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=4
+        ->  Index Only Scan using fact_part_202402_customer_key_date_key_amount_idx on fact_part_202402 fact_part_2  (cost=0.29..5.76 rows=84 width=12) (actual time=0.004..0.013 rows=81 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=4
+        ->  Index Only Scan using fact_part_202403_customer_key_date_key_amount_idx on fact_part_202403 fact_part_3  (cost=0.29..5.43 rows=65 width=12) (actual time=0.004..0.010 rows=70 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=3
+        ->  Index Only Scan using fact_part_202404_customer_key_date_key_amount_idx on fact_part_202404 fact_part_4  (cost=0.29..5.25 rows=55 width=12) (actual time=0.004..0.008 rows=55 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=3
+        ->  Index Only Scan using fact_part_202405_customer_key_date_key_amount_idx on fact_part_202405 fact_part_5  (cost=0.29..5.11 rows=47 width=12) (actual time=0.003..0.007 rows=47 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=3
+        ->  Index Only Scan using fact_part_202406_customer_key_date_key_amount_idx on fact_part_202406 fact_part_6  (cost=0.29..5.06 rows=44 width=12) (actual time=0.003..0.007 rows=44 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=3
+        ->  Index Only Scan using fact_part_202407_customer_key_date_key_amount_idx on fact_part_202407 fact_part_7  (cost=0.29..4.41 rows=7 width=12) (actual time=0.003..0.005 rows=20 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=3
+        ->  Index Only Scan using fact_part_202408_customer_key_date_key_amount_idx on fact_part_202408 fact_part_8  (cost=0.29..4.39 rows=6 width=12) (actual time=0.003..0.004 rows=18 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=3
+        ->  Index Only Scan using fact_part_202409_customer_key_date_key_amount_idx on fact_part_202409 fact_part_9  (cost=0.28..4.35 rows=4 width=12) (actual time=0.003..0.003 rows=6 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=3
+        ->  Index Only Scan using fact_part_202410_customer_key_date_key_amount_idx on fact_part_202410 fact_part_10  (cost=0.28..4.31 rows=2 width=12) (actual time=0.002..0.002 rows=0 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=2
+        ->  Index Only Scan using fact_part_202411_customer_key_date_key_amount_idx on fact_part_202411 fact_part_11  (cost=0.12..8.14 rows=1 width=22) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=2
+        ->  Index Only Scan using fact_part_202412_customer_key_date_key_amount_idx on fact_part_202412 fact_part_12  (cost=0.12..8.14 rows=1 width=22) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=2
+        ->  Index Only Scan using fact_part_202501_customer_key_date_key_amount_idx on fact_part_202501 fact_part_13  (cost=0.28..4.51 rows=13 width=12) (actual time=0.002..0.004 rows=13 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=3
+        ->  Index Only Scan using fact_part_202502_customer_key_date_key_amount_idx on fact_part_202502 fact_part_14  (cost=0.29..4.76 rows=27 width=12) (actual time=0.003..0.005 rows=27 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=3
+        ->  Index Only Scan using fact_part_202503_customer_key_date_key_amount_idx on fact_part_202503 fact_part_15  (cost=0.29..4.99 rows=40 width=12) (actual time=0.003..0.007 rows=40 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=4
+        ->  Index Only Scan using fact_part_202504_customer_key_date_key_amount_idx on fact_part_202504 fact_part_16  (cost=0.29..5.20 rows=52 width=12) (actual time=0.004..0.008 rows=52 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=3
+        ->  Index Only Scan using fact_part_202505_customer_key_date_key_amount_idx on fact_part_202505 fact_part_17  (cost=0.29..5.30 rows=58 width=12) (actual time=0.004..0.009 rows=58 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=3
+        ->  Index Only Scan using fact_part_202506_customer_key_date_key_amount_idx on fact_part_202506 fact_part_18  (cost=0.29..5.32 rows=59 width=12) (actual time=0.003..0.008 rows=59 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=3
+        ->  Index Only Scan using fact_part_202507_customer_key_date_key_amount_idx on fact_part_202507 fact_part_19  (cost=0.29..5.48 rows=68 width=12) (actual time=0.003..0.010 rows=67 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=4
+        ->  Index Only Scan using fact_part_202508_customer_key_date_key_amount_idx on fact_part_202508 fact_part_20  (cost=0.29..5.74 rows=83 width=12) (actual time=0.004..0.011 rows=82 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=3
+        ->  Index Only Scan using fact_part_202509_customer_key_date_key_amount_idx on fact_part_202509 fact_part_21  (cost=0.29..6.08 rows=102 width=12) (actual time=0.004..0.013 rows=98 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=4
+        ->  Index Only Scan using fact_part_202510_customer_key_date_key_amount_idx on fact_part_202510 fact_part_22  (cost=0.29..6.13 rows=105 width=12) (actual time=0.002..0.015 rows=108 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=4
+        ->  Index Only Scan using fact_part_202511_customer_key_date_key_amount_idx on fact_part_202511 fact_part_23  (cost=0.29..6.55 rows=129 width=12) (actual time=0.005..0.015 rows=124 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=3
+        ->  Index Only Scan using fact_part_202512_customer_key_date_key_amount_idx on fact_part_202512 fact_part_24  (cost=0.41..6.60 rows=125 width=12) (actual time=0.004..0.015 rows=115 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=5
+        ->  Index Only Scan using fact_part_202601_customer_key_date_key_amount_idx on fact_part_202601 fact_part_25  (cost=0.41..6.64 rows=127 width=12) (actual time=0.006..0.016 rows=128 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=4
+        ->  Index Only Scan using fact_part_202602_customer_key_date_key_amount_idx on fact_part_202602 fact_part_26  (cost=0.41..6.87 rows=140 width=12) (actual time=0.006..0.017 rows=142 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=4
+        ->  Index Only Scan using fact_part_202603_customer_key_date_key_amount_idx on fact_part_202603 fact_part_27  (cost=0.42..7.10 rows=153 width=12) (actual time=0.007..0.019 rows=154 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=4
+        ->  Index Only Scan using fact_part_202604_customer_key_date_key_amount_idx on fact_part_202604 fact_part_28  (cost=0.42..7.48 rows=175 width=12) (actual time=0.006..0.021 rows=169 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=5
+        ->  Index Only Scan using fact_part_202605_customer_key_date_key_amount_idx on fact_part_202605 fact_part_29  (cost=0.42..12.30 rows=222 width=12) (actual time=0.007..0.023 rows=194 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=4
+        ->  Index Only Scan using fact_part_202606_customer_key_date_key_amount_idx on fact_part_202606 fact_part_30  (cost=0.42..7.46 rows=174 width=12) (actual time=0.006..0.020 rows=149 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=4
+        ->  Index Only Scan using fact_part_202607_customer_key_date_key_amount_idx on fact_part_202607 fact_part_31  (cost=0.42..12.83 rows=252 width=12) (actual time=0.007..0.027 rows=225 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=5
+        ->  Index Only Scan using fact_part_202608_customer_key_date_key_amount_idx on fact_part_202608 fact_part_32  (cost=0.42..8.27 rows=220 width=12) (actual time=0.009..0.027 rows=229 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=5
+        ->  Index Only Scan using fact_part_202609_customer_key_date_key_amount_idx on fact_part_202609 fact_part_33  (cost=0.42..8.20 rows=216 width=12) (actual time=0.005..0.027 rows=208 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=5
+        ->  Index Only Scan using fact_part_202610_customer_key_date_key_amount_idx on fact_part_202610 fact_part_34  (cost=0.42..12.71 rows=245 width=12) (actual time=0.005..0.028 rows=231 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=5
+        ->  Index Only Scan using fact_part_202611_customer_key_date_key_amount_idx on fact_part_202611 fact_part_35  (cost=0.42..7.22 rows=160 width=12) (actual time=0.005..0.026 rows=213 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=5
+        ->  Index Only Scan using fact_part_202612_customer_key_date_key_amount_idx on fact_part_202612 fact_part_36  (cost=0.42..7.64 rows=184 width=12) (actual time=0.003..0.033 rows=212 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=5
+        ->  Index Only Scan using fact_part_202701_customer_key_date_key_amount_idx on fact_part_202701 fact_part_37  (cost=0.42..12.88 rows=255 width=12) (actual time=0.010..0.038 rows=234 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=5
+        ->  Index Only Scan using fact_part_202702_customer_key_date_key_amount_idx on fact_part_202702 fact_part_38  (cost=0.42..7.50 rows=176 width=12) (actual time=0.005..0.024 rows=188 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=5
+        ->  Index Only Scan using fact_part_202703_customer_key_date_key_amount_idx on fact_part_202703 fact_part_39  (cost=0.42..7.45 rows=173 width=12) (actual time=0.003..0.023 rows=186 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=5
+        ->  Index Only Scan using fact_part_202704_customer_key_date_key_amount_idx on fact_part_202704 fact_part_40  (cost=0.42..8.08 rows=209 width=12) (actual time=0.006..0.023 rows=184 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=5
+        ->  Index Only Scan using fact_part_202705_customer_key_date_key_amount_idx on fact_part_202705 fact_part_41  (cost=0.42..7.23 rows=161 width=12) (actual time=0.006..0.023 rows=162 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=5
+        ->  Index Only Scan using fact_part_202706_customer_key_date_key_amount_idx on fact_part_202706 fact_part_42  (cost=0.42..7.38 rows=169 width=12) (actual time=0.006..0.022 rows=168 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=5
+        ->  Index Only Scan using fact_part_202707_customer_key_date_key_amount_idx on fact_part_202707 fact_part_43  (cost=0.42..6.99 rows=147 width=12) (actual time=0.004..0.020 rows=163 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=5
+        ->  Index Only Scan using fact_part_202708_customer_key_date_key_amount_idx on fact_part_202708 fact_part_44  (cost=0.42..6.71 rows=131 width=12) (actual time=0.006..0.018 rows=144 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=4
+        ->  Index Only Scan using fact_part_202709_customer_key_date_key_amount_idx on fact_part_202709 fact_part_45  (cost=0.42..6.94 rows=144 width=12) (actual time=0.007..0.019 rows=140 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=5
+        ->  Index Only Scan using fact_part_202710_customer_key_date_key_amount_idx on fact_part_202710 fact_part_46  (cost=0.41..6.52 rows=120 width=12) (actual time=0.006..0.016 rows=122 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=4
+        ->  Index Only Scan using fact_part_202711_customer_key_date_key_amount_idx on fact_part_202711 fact_part_47  (cost=0.41..5.97 rows=89 width=12) (actual time=0.005..0.013 rows=87 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=5
+        ->  Index Only Scan using fact_part_202712_customer_key_date_key_amount_idx on fact_part_202712 fact_part_48  (cost=0.41..6.58 rows=124 width=12) (actual time=0.008..0.023 rows=114 loops=1)
+              Index Cond: (customer_key = 1321)
+              Heap Fetches: 0
+              Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=8
+Planning Time: 1.064 ms
+Execution Time: 2.632 ms

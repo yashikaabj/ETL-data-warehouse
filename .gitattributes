@@ -1,0 +1,8 @@
+# Keep Unix line endings so the CSV/SQL files load the same on Windows, Mac and Linux
+# (the SQL Server BULK INSERT script expects LF row terminators).
+* text=auto
+*.csv  text eol=lf
+*.sql  text eol=lf
+*.py   text eol=lf
+*.md   text eol=lf
+*.yml  text eol=lf

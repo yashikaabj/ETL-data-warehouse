@@ -1,0 +1,28 @@
+-- Q5: Monthly revenue, all of 2025 (big scan)
+-- SELECT date_key / 100 AS ym, SUM(amount) AS sales FROM bench.fact_baseline WHERE date_key BETWEEN 20250101 AND 20251231 GROUP BY 1 ORDER BY 1
+
+Finalize GroupAggregate  (cost=12737.24..13096.18 rows=1363 width=36) (actual time=138.840..139.261 rows=12 loops=1)
+  Group Key: ((date_key / 100))
+  Buffers: shared hit=1611
+  ->  Gather Merge  (cost=12737.24..13055.29 rows=2726 width=36) (actual time=138.830..139.238 rows=28 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=1611
+        ->  Sort  (cost=11737.21..11740.62 rows=1363 width=36) (actual time=109.022..109.024 rows=9 loops=3)
+              Sort Key: ((date_key / 100))
+              Sort Method: quicksort  Memory: 26kB
+              Buffers: shared hit=1611
+              Worker 0:  Sort Method: quicksort  Memory: 25kB
+              Worker 1:  Sort Method: quicksort  Memory: 25kB
+              ->  Partial HashAggregate  (cost=11645.81..11666.25 rows=1363 width=36) (actual time=108.984..108.996 rows=9 loops=3)
+                    Group Key: (date_key / 100)
+                    Batches: 1  Memory Usage: 73kB
+                    Buffers: shared hit=1597
+                    Worker 0:  Batches: 1  Memory Usage: 73kB
+                    Worker 1:  Batches: 1  Memory Usage: 73kB
+                    ->  Parallel Index Only Scan using ix_fact_date_cover on fact_baseline  (cost=0.43..10957.45 rows=137672 width=12) (actual time=0.021..40.762 rows=118951 loops=3)
+                          Index Cond: ((date_key >= 20250101) AND (date_key <= 20251231))
+                          Heap Fetches: 0
+                          Buffers: shared hit=1597
+Planning Time: 0.117 ms
+Execution Time: 139.299 ms

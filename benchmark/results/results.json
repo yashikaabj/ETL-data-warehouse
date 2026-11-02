@@ -1,0 +1,298 @@
+{
+ "rows": 2580500,
+ "multiplier": 20,
+ "environment": [
+  "PostgreSQL 16.15 (Ubuntu 16.15-0ubuntu0.24.04.1)",
+  "128MB",
+  "4MB",
+  "2"
+ ],
+ "results": [
+  {
+   "stage": "1_baseline",
+   "query": "Q1",
+   "name": "Category revenue, one month",
+   "median_ms": 271.336,
+   "min_ms": 267.385,
+   "max_ms": 331.989,
+   "planning_ms": 0.19,
+   "buffers": 38475,
+   "access_path": "Seq Scan"
+  },
+  {
+   "stage": "1_baseline",
+   "query": "Q2",
+   "name": "One customer's daily sales",
+   "median_ms": 230.825,
+   "min_ms": 225.463,
+   "max_ms": 237.851,
+   "planning_ms": 0.108,
+   "buffers": 38499,
+   "access_path": "Seq Scan"
+  },
+  {
+   "stage": "1_baseline",
+   "query": "Q3",
+   "name": "Top 10 products, one quarter",
+   "median_ms": 331.61,
+   "min_ms": 324.543,
+   "max_ms": 397.879,
+   "planning_ms": 0.201,
+   "buffers": 38475,
+   "access_path": "Seq Scan"
+  },
+  {
+   "stage": "1_baseline",
+   "query": "Q4",
+   "name": "Invoice lookup by posting_id",
+   "median_ms": 198.266,
+   "min_ms": 191.043,
+   "max_ms": 283.929,
+   "planning_ms": 0.08,
+   "buffers": 38425,
+   "access_path": "Seq Scan"
+  },
+  {
+   "stage": "1_baseline",
+   "query": "Q5",
+   "name": "Monthly revenue, all of 2025 (big scan)",
+   "median_ms": 347.95,
+   "min_ms": 326.614,
+   "max_ms": 364.668,
+   "planning_ms": 0.099,
+   "buffers": 38439,
+   "access_path": "Seq Scan"
+  },
+  {
+   "stage": "1_baseline",
+   "query": "W1",
+   "name": "Bulk insert 129,025 rows",
+   "median_ms": 475.494,
+   "min_ms": 474.027,
+   "max_ms": 549.62,
+   "planning_ms": 0.0,
+   "buffers": 0,
+   "access_path": "insert + index maintenance"
+  },
+  {
+   "stage": "2_btree",
+   "query": "Q1",
+   "name": "Category revenue, one month",
+   "median_ms": 38.579,
+   "min_ms": 37.801,
+   "max_ms": 41.633,
+   "planning_ms": 0.229,
+   "buffers": 1121,
+   "access_path": "Index Scan"
+  },
+  {
+   "stage": "2_btree",
+   "query": "Q2",
+   "name": "One customer's daily sales",
+   "median_ms": 3.768,
+   "min_ms": 3.706,
+   "max_ms": 4.486,
+   "planning_ms": 0.058,
+   "buffers": 1626,
+   "access_path": "Bitmap Heap Scan"
+  },
+  {
+   "stage": "2_btree",
+   "query": "Q3",
+   "name": "Top 10 products, one quarter",
+   "median_ms": 134.648,
+   "min_ms": 131.683,
+   "max_ms": 142.163,
+   "planning_ms": 0.238,
+   "buffers": 3104,
+   "access_path": "Index Scan"
+  },
+  {
+   "stage": "2_btree",
+   "query": "Q4",
+   "name": "Invoice lookup by posting_id",
+   "median_ms": 0.006,
+   "min_ms": 0.004,
+   "max_ms": 0.007,
+   "planning_ms": 0.015,
+   "buffers": 4,
+   "access_path": "Index Scan"
+  },
+  {
+   "stage": "2_btree",
+   "query": "Q5",
+   "name": "Monthly revenue, all of 2025 (big scan)",
+   "median_ms": 169.296,
+   "min_ms": 167.813,
+   "max_ms": 192.066,
+   "planning_ms": 0.115,
+   "buffers": 5708,
+   "access_path": "Index Scan"
+  },
+  {
+   "stage": "2_btree",
+   "query": "W1",
+   "name": "Bulk insert 129,025 rows",
+   "median_ms": 1315.996,
+   "min_ms": 1199.29,
+   "max_ms": 1401.442,
+   "planning_ms": 0.0,
+   "buffers": 0,
+   "access_path": "insert + index maintenance"
+  },
+  {
+   "stage": "3_covering",
+   "query": "Q1",
+   "name": "Category revenue, one month",
+   "median_ms": 33.26,
+   "min_ms": 33.026,
+   "max_ms": 33.539,
+   "planning_ms": 0.172,
+   "buffers": 322,
+   "access_path": "Index Only Scan (heap fetches 0)"
+  },
+  {
+   "stage": "3_covering",
+   "query": "Q2",
+   "name": "One customer's daily sales",
+   "median_ms": 1.728,
+   "min_ms": 1.641,
+   "max_ms": 1.786,
+   "planning_ms": 0.044,
+   "buffers": 29,
+   "access_path": "Index Only Scan (heap fetches 0)"
+  },
+  {
+   "stage": "3_covering",
+   "query": "Q3",
+   "name": "Top 10 products, one quarter",
+   "median_ms": 123.297,
+   "min_ms": 123.034,
+   "max_ms": 131.521,
+   "planning_ms": 0.209,
+   "buffers": 915,
+   "access_path": "Index Only Scan (heap fetches 0)"
+  },
+  {
+   "stage": "3_covering",
+   "query": "Q4",
+   "name": "Invoice lookup by posting_id",
+   "median_ms": 0.005,
+   "min_ms": 0.004,
+   "max_ms": 0.008,
+   "planning_ms": 0.014,
+   "buffers": 4,
+   "access_path": "Index Scan"
+  },
+  {
+   "stage": "3_covering",
+   "query": "Q5",
+   "name": "Monthly revenue, all of 2025 (big scan)",
+   "median_ms": 139.143,
+   "min_ms": 137.933,
+   "max_ms": 201.908,
+   "planning_ms": 0.161,
+   "buffers": 1611,
+   "access_path": "Index Only Scan (heap fetches 0)"
+  },
+  {
+   "stage": "3_covering",
+   "query": "W1",
+   "name": "Bulk insert 129,025 rows",
+   "median_ms": 1106.965,
+   "min_ms": 1106.572,
+   "max_ms": 1283.826,
+   "planning_ms": 0.0,
+   "buffers": 0,
+   "access_path": "insert + index maintenance"
+  },
+  {
+   "stage": "4_partitioned",
+   "query": "Q1",
+   "name": "Category revenue, one month",
+   "median_ms": 46.243,
+   "min_ms": 39.942,
+   "max_ms": 51.548,
+   "planning_ms": 0.289,
+   "buffers": 1056,
+   "access_path": "Seq Scan on 1 partition(s)"
+  },
+  {
+   "stage": "4_partitioned",
+   "query": "Q2",
+   "name": "One customer's daily sales",
+   "median_ms": 3.023,
+   "min_ms": 2.618,
+   "max_ms": 3.186,
+   "planning_ms": 1.29,
+   "buffers": 189,
+   "access_path": "Index Only Scan on 48 partition(s) (heap fetches 0)"
+  },
+  {
+   "stage": "4_partitioned",
+   "query": "Q3",
+   "name": "Top 10 products, one quarter",
+   "median_ms": 165.037,
+   "min_ms": 160.256,
+   "max_ms": 229.794,
+   "planning_ms": 0.323,
+   "buffers": 2918,
+   "access_path": "Seq Scan on 3 partition(s)"
+  },
+  {
+   "stage": "4_partitioned",
+   "query": "Q4",
+   "name": "Invoice lookup by posting_id",
+   "median_ms": 0.233,
+   "min_ms": 0.222,
+   "max_ms": 0.305,
+   "planning_ms": 0.757,
+   "buffers": 93,
+   "access_path": "Bitmap Heap Scan + Index Scan + Seq Scan on 48 partition(s)"
+  },
+  {
+   "stage": "4_partitioned",
+   "query": "Q5",
+   "name": "Monthly revenue, all of 2025 (big scan)",
+   "median_ms": 185.711,
+   "min_ms": 183.113,
+   "max_ms": 195.509,
+   "planning_ms": 0.547,
+   "buffers": 5332,
+   "access_path": "Seq Scan on 12 partition(s)"
+  },
+  {
+   "stage": "4_partitioned",
+   "query": "W1",
+   "name": "Bulk insert 129,025 rows",
+   "median_ms": 1230.509,
+   "min_ms": 1173.865,
+   "max_ms": 1589.404,
+   "planning_ms": 0.0,
+   "buffers": 0,
+   "access_path": "insert + index maintenance"
+  }
+ ],
+ "sizes_mb": [
+  [
+   "1_baseline",
+   314.90048,
+   57.982976
+  ],
+  [
+   "2_btree",
+   314.90048,
+   157.351936
+  ],
+  [
+   "3_covering",
+   314.90048,
+   304.603136
+  ],
+  [
+   "4_partitioned",
+   316.882944,
+   310.484992
+  ]
+ ]
+}

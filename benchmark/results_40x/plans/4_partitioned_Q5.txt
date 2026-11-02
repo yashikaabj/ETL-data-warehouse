@@ -1,0 +1,62 @@
+-- Q5: Monthly revenue, all of 2025 (big scan)
+-- SELECT date_key / 100 AS ym, SUM(amount) AS sales FROM bench.fact_part WHERE date_key BETWEEN 20250101 AND 20251231 GROUP BY 1 ORDER BY 1
+
+Finalize GroupAggregate  (cost=39476.99..39861.74 rows=1461 width=36) (actual time=665.924..666.323 rows=12 loops=1)
+  Group Key: ((fact_part.date_key / 100))
+  Buffers: shared hit=14 read=19473
+  ->  Gather Merge  (cost=39476.99..39817.91 rows=2922 width=36) (actual time=665.915..666.305 rows=15 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=14 read=19473
+        ->  Sort  (cost=38476.96..38480.62 rows=1461 width=36) (actual time=633.996..634.001 rows=5 loops=3)
+              Sort Key: ((fact_part.date_key / 100))
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=14 read=19473
+              Worker 0:  Sort Method: quicksort  Memory: 25kB
+              Worker 1:  Sort Method: quicksort  Memory: 25kB
+              ->  Partial HashAggregate  (cost=38378.25..38400.17 rows=1461 width=36) (actual time=633.970..633.983 rows=5 loops=3)
+                    Group Key: ((fact_part.date_key / 100))
+                    Batches: 1  Memory Usage: 73kB
+                    Buffers: shared read=19473
+                    Worker 0:  Batches: 1  Memory Usage: 73kB
+                    Worker 1:  Batches: 1  Memory Usage: 73kB
+                    ->  Parallel Append  (cost=0.00..35654.61 rows=544728 width=12) (actual time=0.016..437.163 rows=435782 loops=3)
+                          Buffers: shared read=19473
+                          ->  Parallel Seq Scan on fact_part_202508 fact_part_8  (cost=0.00..2819.08 rows=65833 width=12) (actual time=0.017..110.564 rows=111916 loops=1)
+                                Filter: ((date_key >= 20250101) AND (date_key <= 20251231))
+                                Buffers: shared read=1667
+                          ->  Parallel Seq Scan on fact_part_202512 fact_part_12  (cost=0.00..2814.34 rows=65734 width=12) (actual time=0.017..108.871 rows=111747 loops=1)
+                                Filter: ((date_key >= 20250101) AND (date_key <= 20251231))
+                                Buffers: shared read=1664
+                          ->  Parallel Seq Scan on fact_part_202501 fact_part_1  (cost=0.00..2810.46 rows=65626 width=12) (actual time=0.031..96.497 rows=111565 loops=1)
+                                Filter: ((date_key >= 20250101) AND (date_key <= 20251231))
+                                Buffers: shared read=1662
+                          ->  Parallel Seq Scan on fact_part_202507 fact_part_7  (cost=0.00..2807.49 rows=65571 width=12) (actual time=0.017..62.660 rows=111470 loops=1)
+                                Filter: ((date_key >= 20250101) AND (date_key <= 20251231))
+                                Buffers: shared read=1660
+                          ->  Parallel Seq Scan on fact_part_202503 fact_part_3  (cost=0.00..2791.87 rows=65192 width=12) (actual time=0.035..78.512 rows=110827 loops=1)
+                                Filter: ((date_key >= 20250101) AND (date_key <= 20251231))
+                                Buffers: shared read=1651
+                          ->  Parallel Seq Scan on fact_part_202505 fact_part_5  (cost=0.00..2783.18 rows=64982 width=12) (actual time=0.018..54.077 rows=110469 loops=1)
+                                Filter: ((date_key >= 20250101) AND (date_key <= 20251231))
+                                Buffers: shared read=1646
+                          ->  Parallel Seq Scan on fact_part_202510 fact_part_10  (cost=0.00..2776.89 rows=64851 width=12) (actual time=0.028..30.372 rows=36749 loops=3)
+                                Filter: ((date_key >= 20250101) AND (date_key <= 20251231))
+                                Buffers: shared read=1642
+                          ->  Parallel Seq Scan on fact_part_202506 fact_part_6  (cost=0.00..2711.19 rows=63325 width=12) (actual time=0.011..53.844 rows=53826 loops=2)
+                                Filter: ((date_key >= 20250101) AND (date_key <= 20251231))
+                                Buffers: shared read=1603
+                          ->  Parallel Seq Scan on fact_part_202509 fact_part_9  (cost=0.00..2702.59 rows=63119 width=12) (actual time=0.008..51.547 rows=107303 loops=1)
+                                Filter: ((date_key >= 20250101) AND (date_key <= 20251231))
+                                Buffers: shared read=1598
+                          ->  Parallel Seq Scan on fact_part_202511 fact_part_11  (cost=0.00..2688.61 rows=62778 width=12) (actual time=0.008..95.385 rows=106722 loops=1)
+                                Filter: ((date_key >= 20250101) AND (date_key <= 20251231))
+                                Buffers: shared read=1590
+                          ->  Parallel Seq Scan on fact_part_202504 fact_part_4  (cost=0.00..2683.47 rows=62655 width=12) (actual time=0.008..69.804 rows=106514 loops=1)
+                                Filter: ((date_key >= 20250101) AND (date_key <= 20251231))
+                                Buffers: shared read=1587
+                          ->  Parallel Seq Scan on fact_part_202502 fact_part_2  (cost=0.00..2541.82 rows=59361 width=12) (actual time=0.014..76.759 rows=100914 loops=1)
+                                Filter: ((date_key >= 20250101) AND (date_key <= 20251231))
+                                Buffers: shared read=1503
+Planning Time: 0.743 ms
+Execution Time: 666.399 ms

@@ -1,0 +1,25 @@
+stage,query,name,median_ms,min_ms,max_ms,planning_ms,buffers,access_path
+1_baseline,Q1,"Category revenue, one month",271.336,267.385,331.989,0.19,38475,Seq Scan
+1_baseline,Q2,One customer's daily sales,230.825,225.463,237.851,0.108,38499,Seq Scan
+1_baseline,Q3,"Top 10 products, one quarter",331.61,324.543,397.879,0.201,38475,Seq Scan
+1_baseline,Q4,Invoice lookup by posting_id,198.266,191.043,283.929,0.08,38425,Seq Scan
+1_baseline,Q5,"Monthly revenue, all of 2025 (big scan)",347.95,326.614,364.668,0.099,38439,Seq Scan
+1_baseline,W1,"Bulk insert 129,025 rows",475.494,474.027,549.62,0.0,0,insert + index maintenance
+2_btree,Q1,"Category revenue, one month",38.579,37.801,41.633,0.229,1121,Index Scan
+2_btree,Q2,One customer's daily sales,3.768,3.706,4.486,0.058,1626,Bitmap Heap Scan
+2_btree,Q3,"Top 10 products, one quarter",134.648,131.683,142.163,0.238,3104,Index Scan
+2_btree,Q4,Invoice lookup by posting_id,0.006,0.004,0.007,0.015,4,Index Scan
+2_btree,Q5,"Monthly revenue, all of 2025 (big scan)",169.296,167.813,192.066,0.115,5708,Index Scan
+2_btree,W1,"Bulk insert 129,025 rows",1315.996,1199.29,1401.442,0.0,0,insert + index maintenance
+3_covering,Q1,"Category revenue, one month",33.26,33.026,33.539,0.172,322,Index Only Scan (heap fetches 0)
+3_covering,Q2,One customer's daily sales,1.728,1.641,1.786,0.044,29,Index Only Scan (heap fetches 0)
+3_covering,Q3,"Top 10 products, one quarter",123.297,123.034,131.521,0.209,915,Index Only Scan (heap fetches 0)
+3_covering,Q4,Invoice lookup by posting_id,0.005,0.004,0.008,0.014,4,Index Scan
+3_covering,Q5,"Monthly revenue, all of 2025 (big scan)",139.143,137.933,201.908,0.161,1611,Index Only Scan (heap fetches 0)
+3_covering,W1,"Bulk insert 129,025 rows",1106.965,1106.572,1283.826,0.0,0,insert + index maintenance
+4_partitioned,Q1,"Category revenue, one month",46.243,39.942,51.548,0.289,1056,Seq Scan on 1 partition(s)
+4_partitioned,Q2,One customer's daily sales,3.023,2.618,3.186,1.29,189,Index Only Scan on 48 partition(s) (heap fetches 0)
+4_partitioned,Q3,"Top 10 products, one quarter",165.037,160.256,229.794,0.323,2918,Seq Scan on 3 partition(s)
+4_partitioned,Q4,Invoice lookup by posting_id,0.233,0.222,0.305,0.757,93,Bitmap Heap Scan + Index Scan + Seq Scan on 48 partition(s)
+4_partitioned,Q5,"Monthly revenue, all of 2025 (big scan)",185.711,183.113,195.509,0.547,5332,Seq Scan on 12 partition(s)
+4_partitioned,W1,"Bulk insert 129,025 rows",1230.509,1173.865,1589.404,0.0,0,insert + index maintenance

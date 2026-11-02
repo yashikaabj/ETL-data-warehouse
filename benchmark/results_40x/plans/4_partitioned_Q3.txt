@@ -1,0 +1,51 @@
+-- Q3: Top 10 products, one quarter
+-- SELECT p.item_name, SUM(f.amount) AS sales FROM bench.fact_part f JOIN dw.dim_product p USING (product_key) WHERE f.date_key BETWEEN 20260101 AND 20260331 GROUP BY p.item_name ORDER BY sales DESC LIMIT 10
+
+Limit  (cost=10437.94..10437.96 rows=10 width=50) (actual time=238.634..241.383 rows=10 loops=1)
+  Buffers: shared hit=4868
+  ->  Sort  (cost=10437.94..10438.30 rows=147 width=50) (actual time=238.633..241.380 rows=10 loops=1)
+        Sort Key: (sum(f.amount)) DESC
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=4868
+        ->  Finalize GroupAggregate  (cost=10396.42..10434.76 rows=147 width=50) (actual time=238.296..241.324 rows=147 loops=1)
+              Group Key: p.item_name
+              Buffers: shared hit=4868
+              ->  Gather Merge  (cost=10396.42..10430.72 rows=294 width=50) (actual time=238.283..241.101 rows=441 loops=1)
+                    Workers Planned: 2
+                    Workers Launched: 2
+                    Buffers: shared hit=4868
+                    ->  Sort  (cost=9396.39..9396.76 rows=147 width=50) (actual time=208.265..208.275 rows=147 loops=3)
+                          Sort Key: p.item_name
+                          Sort Method: quicksort  Memory: 41kB
+                          Buffers: shared hit=4868
+                          Worker 0:  Sort Method: quicksort  Memory: 41kB
+                          Worker 1:  Sort Method: quicksort  Memory: 41kB
+                          ->  Partial HashAggregate  (cost=9389.26..9391.10 rows=147 width=50) (actual time=208.140..208.175 rows=147 loops=3)
+                                Group Key: p.item_name
+                                Batches: 1  Memory Usage: 96kB
+                                Buffers: shared hit=4852
+                                Worker 0:  Batches: 1  Memory Usage: 96kB
+                                Worker 1:  Batches: 1  Memory Usage: 96kB
+                                ->  Hash Join  (cost=5.31..8715.36 rows=134780 width=26) (actual time=0.080..139.957 rows=107824 loops=3)
+                                      Hash Cond: (f.product_key = p.product_key)
+                                      Buffers: shared hit=4852
+                                      ->  Parallel Append  (cost=0.00..8346.06 rows=134780 width=12) (actual time=0.007..86.054 rows=107824 loops=3)
+                                            Buffers: shared hit=4818
+                                            ->  Parallel Seq Scan on fact_part_202601 f_1  (cost=0.00..2651.36 rows=65758 width=12) (actual time=0.008..19.085 rows=37263 loops=3)
+                                                  Filter: ((date_key >= 20260101) AND (date_key <= 20260331))
+                                                  Buffers: shared hit=1665
+                                            ->  Parallel Seq Scan on fact_part_202603 f_3  (cost=0.00..2622.70 rows=65046 width=12) (actual time=0.006..37.291 rows=55290 loops=2)
+                                                  Filter: ((date_key >= 20260101) AND (date_key <= 20260331))
+                                                  Buffers: shared hit=1647
+                                            ->  Parallel Seq Scan on fact_part_202602 f_2  (cost=0.00..2398.09 rows=59473 width=12) (actual time=0.006..47.958 rows=101104 loops=1)
+                                                  Filter: ((date_key >= 20260101) AND (date_key <= 20260331))
+                                                  Buffers: shared hit=1506
+                                      ->  Hash  (cost=3.47..3.47 rows=147 width=22) (actual time=0.054..0.055 rows=147 loops=3)
+                                            Buckets: 1024  Batches: 1  Memory Usage: 17kB
+                                            Buffers: shared hit=6
+                                            ->  Seq Scan on dim_product p  (cost=0.00..3.47 rows=147 width=22) (actual time=0.008..0.027 rows=147 loops=3)
+                                                  Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=4
+Planning Time: 0.313 ms
+Execution Time: 241.432 ms

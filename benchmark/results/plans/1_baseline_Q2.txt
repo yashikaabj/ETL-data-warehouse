@@ -1,0 +1,25 @@
+-- Q2: One customer's daily sales
+-- SELECT date_key, SUM(amount) AS sales FROM bench.fact_baseline WHERE customer_key = 1321 GROUP BY date_key ORDER BY date_key
+
+Finalize GroupAggregate  (cost=52957.55..53320.66 rows=1293 width=36) (actual time=226.438..230.176 rows=871 loops=1)
+  Group Key: date_key
+  Buffers: shared hit=14973 read=23526
+  ->  Gather Merge  (cost=52957.55..53285.10 rows=2586 width=36) (actual time=226.429..229.697 rows=882 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=14973 read=23526
+        ->  Partial GroupAggregate  (cost=51957.52..51986.59 rows=1293 width=36) (actual time=194.437..196.189 rows=294 loops=3)
+              Group Key: date_key
+              Buffers: shared hit=14973 read=23526
+              ->  Sort  (cost=51957.52..51961.82 rows=1720 width=12) (actual time=194.424..194.518 rows=1813 loops=3)
+                    Sort Key: date_key
+                    Sort Method: quicksort  Memory: 181kB
+                    Buffers: shared hit=14973 read=23526
+                    Worker 0:  Sort Method: quicksort  Memory: 111kB
+                    Worker 1:  Sort Method: quicksort  Memory: 114kB
+                    ->  Parallel Seq Scan on fact_baseline  (cost=0.00..51865.09 rows=1720 width=12) (actual time=2.931..193.943 rows=1813 loops=3)
+                          Filter: (customer_key = 1321)
+                          Rows Removed by Filter: 858353
+                          Buffers: shared hit=14899 read=23526
+Planning Time: 0.085 ms
+Execution Time: 230.244 ms

@@ -1,0 +1,39 @@
+-- Q1: Category revenue, one month
+-- SELECT p.category, SUM(f.amount) AS sales FROM bench.fact_part f JOIN dw.dim_product p USING (product_key) WHERE f.date_key BETWEEN 20260301 AND 20260331 GROUP BY p.category ORDER BY sales DESC
+
+Sort  (cost=4135.23..4135.31 rows=32 width=40) (actual time=77.420..77.470 rows=32 loops=1)
+  Sort Key: (sum(f.amount)) DESC
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=1673
+  ->  Finalize GroupAggregate  (cost=4130.11..4134.43 rows=32 width=40) (actual time=77.356..77.451 rows=32 loops=1)
+        Group Key: p.category
+        Buffers: shared hit=1673
+        ->  Gather Merge  (cost=4130.11..4133.79 rows=32 width=40) (actual time=77.339..77.403 rows=64 loops=1)
+              Workers Planned: 1
+              Workers Launched: 1
+              Buffers: shared hit=1673
+              ->  Sort  (cost=3130.10..3130.18 rows=32 width=40) (actual time=58.793..58.798 rows=32 loops=2)
+                    Sort Key: p.category
+                    Sort Method: quicksort  Memory: 28kB
+                    Buffers: shared hit=1673
+                    Worker 0:  Sort Method: quicksort  Memory: 28kB
+                    ->  Partial HashAggregate  (cost=3128.90..3129.30 rows=32 width=40) (actual time=58.758..58.768 rows=32 loops=2)
+                          Group Key: p.category
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared hit=1665
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          ->  Hash Join  (cost=5.31..2803.67 rows=65046 width=16) (actual time=0.066..40.923 rows=55290 loops=2)
+                                Hash Cond: (f.product_key = p.product_key)
+                                Buffers: shared hit=1665
+                                ->  Parallel Seq Scan on fact_part_202603 f  (cost=0.00..2622.70 rows=65046 width=12) (actual time=0.005..16.613 rows=55290 loops=2)
+                                      Filter: ((date_key >= 20260301) AND (date_key <= 20260331))
+                                      Buffers: shared hit=1647
+                                ->  Hash  (cost=3.47..3.47 rows=147 width=12) (actual time=0.044..0.045 rows=147 loops=2)
+                                      Buckets: 1024  Batches: 1  Memory Usage: 15kB
+                                      Buffers: shared hit=4
+                                      ->  Seq Scan on dim_product p  (cost=0.00..3.47 rows=147 width=12) (actual time=0.006..0.020 rows=147 loops=2)
+                                            Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=4
+Planning Time: 0.279 ms
+Execution Time: 77.509 ms

@@ -1,0 +1,12 @@
+-- Q2: One customer's daily sales
+-- SELECT date_key, SUM(amount) AS sales FROM bench.fact_baseline WHERE customer_key = 1321 GROUP BY date_key ORDER BY date_key
+
+GroupAggregate  (cost=0.43..521.38 rows=1461 width=36) (actual time=0.015..3.346 rows=1305 loops=1)
+  Group Key: date_key
+  Buffers: shared hit=54
+  ->  Index Only Scan using ix_fact_cust_cover on fact_baseline  (cost=0.43..441.19 rows=12386 width=12) (actual time=0.009..1.173 rows=10880 loops=1)
+        Index Cond: (customer_key = 1321)
+        Heap Fetches: 0
+        Buffers: shared hit=54
+Planning Time: 0.048 ms
+Execution Time: 3.414 ms

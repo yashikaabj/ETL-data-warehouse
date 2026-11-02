@@ -1,0 +1,17 @@
+-- Q4: Invoice lookup by posting_id
+-- SELECT * FROM bench.fact_baseline WHERE posting_id = 18768
+
+Gather  (cost=1000.00..104727.13 rows=10 width=110) (actual time=349.307..356.446 rows=6 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  Buffers: shared hit=16130 read=60715 written=4
+  ->  Parallel Seq Scan on fact_baseline  (cost=0.00..103726.13 rows=4 width=110) (actual time=268.756..317.420 rows=2 loops=3)
+        Filter: (posting_id = 18768)
+        Rows Removed by Filter: 1720331
+        Buffers: shared hit=16130 read=60715 written=4
+Planning Time: 0.062 ms
+JIT:
+  Functions: 6
+  Options: Inlining false, Optimization false, Expressions true, Deforming true
+  Timing: Generation 0.651 ms, Inlining 0.000 ms, Optimization 0.478 ms, Emission 22.864 ms, Total 23.993 ms
+Execution Time: 356.686 ms

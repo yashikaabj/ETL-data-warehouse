@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local settings / secrets
+.env
+*.local
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Benchmark scratch output (results/ and results_40x/ are kept on purpose)
+benchmark/tmp/

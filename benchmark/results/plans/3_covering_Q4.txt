@@ -1,0 +1,8 @@
+-- Q4: Invoice lookup by posting_id
+-- SELECT * FROM bench.fact_baseline WHERE posting_id = 70019005
+
+Index Scan using ix_fact_posting on fact_baseline  (cost=0.43..22.86 rows=5 width=110) (actual time=0.002..0.002 rows=2 loops=1)
+  Index Cond: (posting_id = 70019005)
+  Buffers: shared hit=4
+Planning Time: 0.014 ms
+Execution Time: 0.005 ms

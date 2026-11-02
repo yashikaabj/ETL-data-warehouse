@@ -1,0 +1,20 @@
+-- Q2: One customer's daily sales
+-- SELECT date_key, SUM(amount) AS sales FROM bench.fact_baseline WHERE customer_key = 1321 GROUP BY date_key ORDER BY date_key
+
+Sort  (cost=28047.56..28051.20 rows=1459 width=36) (actual time=7.393..7.455 rows=1305 loops=1)
+  Sort Key: date_key
+  Sort Method: quicksort  Memory: 99kB
+  Buffers: shared hit=3231
+  ->  HashAggregate  (cost=27952.64..27970.88 rows=1459 width=36) (actual time=6.821..7.156 rows=1305 loops=1)
+        Group Key: date_key
+        Batches: 1  Memory Usage: 577kB
+        Buffers: shared hit=3231
+        ->  Bitmap Heap Scan on fact_baseline  (cost=113.76..27902.75 rows=9978 width=12) (actual time=0.819..3.537 rows=10880 loops=1)
+              Recheck Cond: (customer_key = 1321)
+              Heap Blocks: exact=3219
+              Buffers: shared hit=3231
+              ->  Bitmap Index Scan on ix_fact_customer  (cost=0.00..111.27 rows=9978 width=0) (actual time=0.413..0.413 rows=10880 loops=1)
+                    Index Cond: (customer_key = 1321)
+                    Buffers: shared hit=12
+Planning Time: 0.058 ms
+Execution Time: 7.534 ms
